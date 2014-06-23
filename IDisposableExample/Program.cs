@@ -47,15 +47,18 @@ namespace IDisposableExample
 
             public string GetText()
             {
+#if DEBUG
                 // We can't use this instance after disposing.
+                // BUT! Do we really need that, if user just can't use our class correctly?
                 if (_disposed)
                     throw new ObjectDisposedException(null);
-
+#endif
                 return "some text";
             }
 
             ~CorrectDisposable()
             {
+                // We can use Console object here, because it is given special consideration.
                 Console.WriteLine("[{0}:{1}] Finalizer.", Thread.CurrentThread.ManagedThreadId, GetHashCode());
 
                 Dispose(false);
@@ -64,6 +67,13 @@ namespace IDisposableExample
             public void Dispose()
             {
                 Console.WriteLine("[{0}:{1}] Dispose.", Thread.CurrentThread.ManagedThreadId, GetHashCode());
+
+#if DEBUG
+                // We can't dispose twice.
+                // BUT! Do we really need that, if user just can't use our class correctly?
+                if (_disposed)
+                    throw new ObjectDisposedException(null);
+#endif
 
                 try
                 {
@@ -227,7 +237,7 @@ namespace IDisposableExample
             var obj2 = new CorrectDisposable(false);
             Console.WriteLine("[{0}] IDisposable object without exception with GC: {1}", Thread.CurrentThread.ManagedThreadId, obj2.GetText());
 
-            // Managed dispose of partly created instance (dispose on GC).
+            // Managed dispose of partially-constructed instance (dispose on GC).
             try
             {
                 using (var obj3 = new CorrectDisposable(true))
