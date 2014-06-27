@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDisposableExample", "IDisp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstructorExceptionExample", "ConstructorExceptionExample\ConstructorExceptionExample.csproj", "{89B98E59-AE13-4BA0-95CF-2D673A90DEBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IteratorBlockExample", "IteratorBlockExample\IteratorBlockExample.csproj", "{F4947235-EE44-4C2F-96B5-58CB924B5944}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{89B98E59-AE13-4BA0-95CF-2D673A90DEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89B98E59-AE13-4BA0-95CF-2D673A90DEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89B98E59-AE13-4BA0-95CF-2D673A90DEBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4947235-EE44-4C2F-96B5-58CB924B5944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4947235-EE44-4C2F-96B5-58CB924B5944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4947235-EE44-4C2F-96B5-58CB924B5944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4947235-EE44-4C2F-96B5-58CB924B5944}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
