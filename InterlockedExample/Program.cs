@@ -6,7 +6,7 @@
     /// <summary>
     /// Class with example of threads synchronizing using <see cref="Interlocked"/> class.
     /// </summary>
-    class ThreadSyncronizedData
+    class ThreadSynchronizedData
     {
         /// <summary>
         /// Flag of executed operation.
@@ -54,7 +54,7 @@
     }
 
     /// <summary>
-    /// Example of syncronizing threads using <see cref="Interlocked"/> class.
+    /// Example of synchronizing threads using <see cref="Interlocked"/> class.
     /// </summary>
     class Program
     {
@@ -68,7 +68,7 @@
             for (int i = 0; i < 1000; i++)
             {
                 var data = new ThreadRaceData();
-//                var data = new ThreadSyncronizedData();
+//                var data = new ThreadSynchronizedData();
 
                 var threads = new Thread[ThredsCount];
                 for (int j = 0; j < ThredsCount; j++)

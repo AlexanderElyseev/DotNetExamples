@@ -4,7 +4,7 @@
     using System.Threading;
 
     /// <summary>
-    /// Class with data that shared between two threads without syncronization.
+    /// Class with data that shared between two threads without synchronization.
     /// </summary>
     class ThreadRaceData
     {
@@ -31,9 +31,9 @@
     }
 
     /// <summary>
-    /// Class with data that shared between two threads with syncronization using <see cref="Volatile"/>.
+    /// Class with data that shared between two threads with synchronization using <see cref="Volatile"/>.
     /// </summary>
-    class ThreadSyncronizedData
+    class ThreadSynchronizedData
     {
         private int _a;
         private int _b;
@@ -52,10 +52,10 @@
     }
 
     /// <summary>
-    /// Class with data that shared between two threads with syncronization using volatile variables.
+    /// Class with data that shared between two threads with synchronization using volatile variables.
     /// IL code is different.
     /// </summary>
-    class AnotherThreadSyncronizedData
+    class AnotherThreadSynchronizedData
     {
         private volatile int _a;
         private int _b;
@@ -86,10 +86,10 @@
         {
             for (int i = 0; i < 100000; i++)
             {
-                // Example of race with not syncronized data. Won't output 0.
-//                var data = new ThreadSyncronizedData();
+                // Example of race with not synchronized data. Won't output 0.
+//                var data = new ThreadSynchronizedData();
 
-                // Example of race with not syncronized data. Possible outputs 0.
+                // Example of race with not synchronized data. Possible outputs 0.
                 var data = new ThreadRaceData();
 
                 var t1 = new Thread(data.Thread1);
