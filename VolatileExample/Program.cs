@@ -13,13 +13,17 @@
 
         public void Thread1()
         {
+            Thread.Sleep(100);
+            
             // WARNING: It could be differenct sequence.
-            _b = 2;
+            _b = 1;
             _a = 1;
         }
 
         public void Thread2()
         {
+            Thread.Sleep(100);
+
             // WARNING: _b could be read later than _a.
             if (_a == 1)
                 Console.Write(_b);
@@ -75,29 +79,18 @@
     /// </summary>
     class Program
     {
+        /// <summary>
+        /// Aplication entry point.
+        /// </summary>
         static void Main()
         {
-            // Example of race with not syncronized data.
-            // Possible output 0.
             for (int i = 0; i < 100000; i++)
             {
+                // Example of race with not syncronized data. Won't output 0.
+//                var data = new ThreadSyncronizedData();
+
+                // Example of race with not syncronized data. Possible outputs 0.
                 var data = new ThreadRaceData();
-                
-                var t1 = new Thread(data.Thread1);
-                var t2 = new Thread(data.Thread2);
-
-                t2.Start();
-                t1.Start();
-
-                t1.Join();
-                t2.Join();
-            }
-
-            // Example of race with not syncronized data.
-            // Won't output 0.
-            for (int i = 0; i < 100000; i++)
-            {
-                var data = new ThreadSyncronizedData();
 
                 var t1 = new Thread(data.Thread1);
                 var t2 = new Thread(data.Thread2);
