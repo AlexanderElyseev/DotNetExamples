@@ -31,6 +31,46 @@
     }
 
     /// <summary>
+    /// Class with example of possible compiler oprimization that could bring undefined
+    /// behaviour on multithread situation.
+    /// If compiler caches value of Stop, thread that executed ThreadFunc won't stop.
+    /// Needs /optimize+ and x86 platform.
+    /// </summary>
+    class ThreadOptimizedData
+    {
+        public bool Stop;
+
+        public void ThreadFunc()
+        {
+            int x = 0;
+            while (!Stop)
+                x++;
+
+            // It couldn't be printed.
+            Console.WriteLine("Stopped.");
+        }
+    }
+
+    /// <summary>
+    /// Class with example of using volatile variable to prevent optimization.
+    /// Value of Stop won't be cached.
+    /// </summary>
+    class ThreadNotOptimizedData
+    {
+        public volatile bool Stop;
+
+        public void ThreadFunc()
+        {
+            int x = 0;
+            while (!Stop)
+                x++;
+            
+            // It'll be printed.
+            Console.WriteLine("Stopped.");
+        }
+    }
+
+    /// <summary>
     /// Class with data that shared between two threads with synchronization using <see cref="Volatile"/>.
     /// </summary>
     class ThreadSynchronizedData
@@ -84,23 +124,41 @@
         /// </summary>
         static void Main()
         {
-            for (int i = 0; i < 100000; i++)
-            {
-                // Example of race with not synchronized data. Won't output 0.
-//                var data = new ThreadSynchronizedData();
+            // Example 1.
+            // Optimization of ThreadFunc (saving value of Stop in register) break program flow.
+            var data = new ThreadOptimizedData();
+//            var data = new ThreadNotOptimizedData();
+            
+            var t = new Thread(data.ThreadFunc);
+            t.Start();
 
-                // Example of race with not synchronized data. Possible outputs 0.
-                var data = new ThreadRaceData();
+            Thread.Sleep(1000);
 
-                var t1 = new Thread(data.Thread1);
-                var t2 = new Thread(data.Thread2);
+            // In case of non-volatile variable, value of Stop could be cached in worker thread.
+            data.Stop = true;
 
-                t2.Start();
-                t1.Start();
+            Console.WriteLine("Waiting...");
+            t.Join();
 
-                t1.Join();
-                t2.Join();
-            }
+            //            // Example 2.
+            //            // Undefined behaviour with non-volatile variables.
+            //            for (int i = 0; i < 100000; i++)
+            //            {
+            //                // Example of race with not synchronized data. Won't output 0.
+            ////                var data = new ThreadSynchronizedData();
+            //
+            //                // Example of race with not synchronized data. Possible outputs 0.
+            //                var data = new ThreadRaceData();
+            //
+            //                var t1 = new Thread(data.Thread1);
+            //                var t2 = new Thread(data.Thread2);
+            //
+            //                t2.Start();
+            //                t1.Start();
+            //
+            //                t1.Join();
+            //                t2.Join();
+            //            }
         }
     }
 }
