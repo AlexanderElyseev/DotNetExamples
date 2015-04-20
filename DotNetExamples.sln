@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskExample", "TaskExample\TaskExample.csproj", "{49E13C64-3659-4C6C-9A0B-37A0F1C05195}"
 EndProject
@@ -58,6 +58,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{3679052E-8A22-40A9-B771-B162538032A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSharp Core", "CSharp Core", "{E7C6954D-DE08-43EC-AD31-A0FD170D19C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArglistExample", "ArglistExample\ArglistExample.csproj", "{75B40252-1930-4FA2-BEB9-61B2CC136D86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -207,6 +209,12 @@ Global
 		{BB1B7620-67B9-44DC-B30A-9BC06FD2CB22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB1B7620-67B9-44DC-B30A-9BC06FD2CB22}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB1B7620-67B9-44DC-B30A-9BC06FD2CB22}.Release|x86.ActiveCfg = Release|Any CPU
+		{75B40252-1930-4FA2-BEB9-61B2CC136D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75B40252-1930-4FA2-BEB9-61B2CC136D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75B40252-1930-4FA2-BEB9-61B2CC136D86}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{75B40252-1930-4FA2-BEB9-61B2CC136D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75B40252-1930-4FA2-BEB9-61B2CC136D86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75B40252-1930-4FA2-BEB9-61B2CC136D86}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
